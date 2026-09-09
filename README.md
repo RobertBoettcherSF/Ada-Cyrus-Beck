@@ -5,17 +5,17 @@ algorithm. A line segment is clipped against a **convex polygon** (2-D) or a
 **convex polyhedron** given as outward planes (3-D lite) using the parametric
 form
 
-\[
+$$
 \mathbf{p}(t) = (1-t)\,\mathbf{p}_0 + t\,\mathbf{p}_1,\quad 0 \le t \le 1
-\]
+$$
 
-For each clip edge/plane with outward normal \(\mathbf{n}\) and a point
-\(\mathbf{p}_E\) on the plane, the intersection satisfies
-\(\mathbf{n}\cdot(\mathbf{p}(t)-\mathbf{p}_E)=0\). Entering vs leaving is
-classified by the sign of \(\mathbf{n}\cdot\mathbf{D}\) where
-\(\mathbf{D}=\mathbf{p}_1-\mathbf{p}_0\); then
-\(t_{\mathrm{enter}}=\max(\ldots)\) and \(t_{\mathrm{leave}}=\min(\ldots)\),
-accepting when \(t_{\mathrm{enter}}\le t_{\mathrm{leave}}\).
+For each clip edge/plane with outward normal $\mathbf{n}$ and a point
+$\mathbf{p}_E$ on the plane, the intersection satisfies
+$\mathbf{n}\cdot(\mathbf{p}(t)-\mathbf{p}_E)=0$. Entering vs leaving is
+classified by the sign of $\mathbf{n}\cdot\mathbf{D}$ where
+$\mathbf{D}=\mathbf{p}_1-\mathbf{p}_0$; then
+$t_{\mathrm{enter}}=\max(\ldots)$ and $t_{\mathrm{leave}}=\min(\ldots)$,
+accepting when $t_{\mathrm{enter}}\le t_{\mathrm{leave}}$.
 
 **Liang–Barsky** is the rectangular specialisation of Cyrus–Beck.
 
@@ -29,7 +29,7 @@ Computers & Graphics, 1978.
 | Algorithm | Style | Notes |
 | --- | --- | --- |
 | Cohen–Sutherland | Outcodes + iterative edge clips | Rectangle only |
-| Liang–Barsky | Parametric \(t\) against four edges | Rectangle; CB special case |
+| Liang–Barsky | Parametric $t$ against four edges | Rectangle; CB special case |
 | **Cyrus–Beck** | Parametric vs convex polygon / planes | General convex windows |
 | Nicholl–Lee–Nicholl | Canonical regions | 2-D rectangle only |
 
@@ -43,7 +43,7 @@ Language: **Ada 2023** (ISO/IEC 8652:2023), compiled with GNAT (`-gnat2022`).
 | Convexity | `Is_Convex_Polygon` | Precondition helper (CCW, strict turns) |
 | Classification | `Plane_Dot_Classification` | Point vs edge half-plane (Inside/On/Outside) |
 | Main clip | `Cyrus_Beck_Clip` | Accept/Reject + clipped segment vs polygon |
-| Params clip | `Cyrus_Beck_Clip_Params` | Clip + retained \(t_{\mathrm{enter}}\) / \(t_{\mathrm{leave}}\) |
+| Params clip | `Cyrus_Beck_Clip_Params` | Clip + retained $t_{\mathrm{enter}}$ / $t_{\mathrm{leave}}$ |
 | Rectangle | `Cyrus_Beck_Clip_Rect` | Convenience via `Make_Convex_Rect` |
 | Reference | `Liang_Barsky_Clip_Lite` | In-package LB for rectangle agreement |
 | 3-D lite | `Cyrus_Beck_Clip_3D_Lite`, `Make_Axis_Aligned_Box_Planes` | Segment vs outward plane set |
@@ -77,7 +77,7 @@ There is no interactive `main.adb`; `tests.adb` is the project main.
 - `Plane_Dot_Classification` Inside / On / Outside
 - `Point_At_Parameter`
 - `Cyrus_Beck_Clip` inside / outside / edge crossings
-- `Cyrus_Beck_Clip_Params` retained \(t_0,t_1\)
+- `Cyrus_Beck_Clip_Params` retained $t_0,t_1$
 - Triangle clip window
 - `Cyrus_Beck_Clip_Rect` ↔ `Liang_Barsky_Clip_Lite` agreement lattice
 - `Liang_Barsky_Clip_Lite` reference cases
